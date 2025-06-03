@@ -88,9 +88,13 @@ public class SistemaMaletas {
         String cod = sc.next();
         Producto p = buscarProducto(cod);
         if (p != null) {
-            System.out.print("Cantidad a comprar: ");
+            System.out.print("Cantidad a comprar (maximo 5 productos): ");
             int cant = sc.nextInt();
-            c.realizarVenta(p, cant);
+            if (cant > 0 && cant <= 5){
+                c.realizarVenta(p, cant);
+            } else {
+                System.out.println("Cantidad maximo superada");
+            }
         } else {
             System.out.println("Producto no encontrado.");
         }
@@ -103,4 +107,5 @@ public class SistemaMaletas {
     static void mostrarEmpleados() {
         for (Empleado e : empleados) e.mostrarInfo();
     }
+
 }
