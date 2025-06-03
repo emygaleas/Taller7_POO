@@ -93,6 +93,7 @@ realizarVenta(Cajero c): stactic void
 mostrarTodos():stactic void
 mostrarEmpleados(): stactic void
 }
+
 Empleado --> SistemaMaletas
 Producto --> SistemaMaletas
 @enduml
