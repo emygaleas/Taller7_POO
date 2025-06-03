@@ -2,41 +2,8 @@
 
 import java.util.*;
 
-// SUPERCLASE: Empleado
-abstract class Empleado {
-    protected String nombre;
-    protected String id;
-    protected String rol;
-
-    public Empleado(String nombre, String id, String rol) {
-        this.nombre = nombre;
-        this.id = id;
-        this.rol = rol;
-    }
-
-    public void mostrarInfo() {
-        System.out.println("Empleado: " + nombre + " | Rol: " + rol);
-    }
-}
-
 // SUBCLASES
-class Cajero extends Empleado {
-    public Cajero(String nombre, String id) {
-        super(nombre, id, "Cajero");
-    }
 
-    public void realizarVenta(Producto p, int cantidad) {
-        double subtotal = p.getPrecio() * cantidad;
-        if (p instanceof Mochila) subtotal *= 0.90;
-        if (p instanceof MaletaViaje) subtotal *= 0.80;
-        double total = subtotal * 1.15;
-        System.out.println("Venta realizada. Total a pagar: $" + total);
-    }
-
-    public void consultarDetalle(Producto p) {
-        p.mostrarDetalle();
-    }
-}
 
 class Vendedor extends Empleado {
     public Vendedor(String nombre, String id) {
@@ -48,17 +15,6 @@ class Vendedor extends Empleado {
     }
 }
 
-class Administrador extends Empleado {
-    public Administrador(String nombre, String id) {
-        super(nombre, id, "Administrador");
-    }
-}
-
-class Gerente extends Empleado {
-    public Gerente(String nombre, String id) {
-        super(nombre, id, "Gerente");
-    }
-}
 
 class PersonalLimpieza extends Empleado {
     public PersonalLimpieza(String nombre, String id) {
@@ -110,20 +66,8 @@ class Mochila extends Producto {
     }
 }
 
-class Bolso extends Producto {
-    public Bolso(String codigo, String descripcion, String ubicacion, int stock, double precio) {
-        super(codigo, descripcion, ubicacion, stock, precio);
-    }
-}
-
 class MaletaViaje extends Producto {
     public MaletaViaje(String codigo, String descripcion, String ubicacion, int stock, double precio) {
-        super(codigo, descripcion, ubicacion, stock, precio);
-    }
-}
-
-class Lonchera extends Producto {
-    public Lonchera(String codigo, String descripcion, String ubicacion, int stock, double precio) {
         super(codigo, descripcion, ubicacion, stock, precio);
     }
 }
