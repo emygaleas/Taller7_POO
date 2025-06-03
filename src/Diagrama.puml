@@ -1,0 +1,98 @@
+@startuml
+abstract class Empleado{
+* nombre: String
+* id: String
+* rol: String
++ mostrarInfo(): void
+}
+
+class Cajero extends Empleado{
+* nombre : String
+* id : String
+* "Cajero"
++ realizarVenta(Producto p, int cantidad): void
++ consultarDetalle(Producto p): void
+}
+
+class Vendedor extends Empleado{
+* nombre : String
+* id : String
+* "Vendedor"
++ consultarDetalle(Producto p): void
+}
+
+class Administrador extends Empleado{
+* nombre : String
+* id : String
+* "Administrador"
+}
+
+class Gerente extends Empleado{
+* nombre : String
+* id : String
+* "Gerente"
+}
+
+class PersonalLimpieza extends Empleado{
+* nombre : String
+* id : String
+* "Limpieza"
+}
+
+class Producto{
+- codigo: String
+- descripcion: String
+- ubicacion: String
+- stock: int
+- precio: double
++ getPrecio(): double
++ getCodigo(): String
++ mostrarDetalle(): void
++ mostrarPrecio(): void
+}
+
+class Mochila extends Producto{
+- codigo: String
+- descripcion: String
+- ubicacion: String
+- stock: int
+- precio: double
+}
+
+class Bolso extends Producto{
+- codigo: String
+- descripcion: String
+- ubicacion: String
+- stock: int
+- precio: double
+}
+
+class MaletaViaje extends Producto{
+- codigo: String
+- descripcion: String
+- ubicacion: String
+- stock: int
+- precio: double
+}
+
+class Lonchera extends Producto{
+- codigo: String
+- descripcion: String
+- ubicacion: String
+- stock: int
+- precio: double
+}
+
+class SistemaMaletas{
++ main(String[] args):static void
+inicializarDatos():stactic void
+buscarProducto(String codigo): stactic Producto
+consultarDetalle(): stactic void
+clienteConsultar(): stactic void
+realizarVenta(Cajero c): stactic void
+mostrarTodos():stactic void
+mostrarEmpleados(): stactic void
+}
+Empleado --> SistemaMaletas
+Producto --> SistemaMaletas
+@enduml
