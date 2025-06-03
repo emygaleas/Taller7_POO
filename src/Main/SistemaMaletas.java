@@ -27,6 +27,7 @@ public class SistemaMaletas {
             System.out.println("3. Realizar venta (Cajero)");
             System.out.println("4. Ver todos los productos");
             System.out.println("5. Ver empleados registrados");
+            System.out.println("7. Mostrar productos con stock menor a 3 unidades");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = sc.nextInt();
@@ -37,6 +38,7 @@ public class SistemaMaletas {
                 case 3 -> realizarVenta(cajero1);
                 case 4 -> mostrarTodos();
                 case 5 -> mostrarEmpleados();
+                case 7 -> mostrarStock();
             }
         } while(opcion != 0);
     }
@@ -95,6 +97,14 @@ public class SistemaMaletas {
             System.out.println("Producto no encontrado.");
         }
     }
+
+    static void mostrarStock() {
+        System.out.println("\n--- Productos con stock menor a 3 ---");
+        for (Producto p : productos)
+            if (p.getStock() <= 3)
+                p.mostrarDetalle();
+    }
+
 
     static void mostrarTodos() {
         for (Producto p : productos) p.mostrarDetalle();
