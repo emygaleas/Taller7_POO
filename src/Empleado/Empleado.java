@@ -1,5 +1,7 @@
+package Empleado;
+
 // SUPERCLASE: Empleado
-abstract class Empleado {
+public abstract class Empleado {
     protected String nombre;
     protected String id;
     protected String rol;

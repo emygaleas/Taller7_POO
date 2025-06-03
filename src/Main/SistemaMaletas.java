@@ -1,76 +1,10 @@
-// EMPRESA DE VENTA DE MALETAS - POO EN JAVA (ACTUALIZADO)
+package Main;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-// SUBCLASES
-
-
-class Vendedor extends Empleado {
-    public Vendedor(String nombre, String id) {
-        super(nombre, id, "Vendedor");
-    }
-
-    public void consultarDetalle(Producto p) {
-        p.mostrarDetalle();
-    }
-}
-
-
-class PersonalLimpieza extends Empleado {
-    public PersonalLimpieza(String nombre, String id) {
-        super(nombre, id, "Limpieza");
-    }
-}
-
-// SUPERCLASE PRODUCTO
-class Producto {
-    private String codigo;
-    private String descripcion;
-    private String ubicacion;
-    private int stock;
-    private double precio;
-
-    public Producto(String codigo, String descripcion, String ubicacion, int stock, double precio) {
-        this.codigo = codigo;
-        this.descripcion = descripcion;
-        this.ubicacion = ubicacion;
-        this.stock = stock;
-        this.precio = precio;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void mostrarDetalle() {
-        System.out.println("\nCódigo: " + codigo);
-        System.out.println("Descripción: " + descripcion);
-        System.out.println("Ubicación: " + ubicacion);
-        System.out.println("Stock: " + stock);
-        System.out.println("Precio: $" + precio);
-    }
-
-    public void mostrarPrecio() {
-        System.out.println("\nPrecio del producto: $" + precio);
-    }
-}
-
-// SUBCLASES DE PRODUCTO
-class Mochila extends Producto {
-    public Mochila(String codigo, String descripcion, String ubicacion, int stock, double precio) {
-        super(codigo, descripcion, ubicacion, stock, precio);
-    }
-}
-
-class MaletaViaje extends Producto {
-    public MaletaViaje(String codigo, String descripcion, String ubicacion, int stock, double precio) {
-        super(codigo, descripcion, ubicacion, stock, precio);
-    }
-}
+import Producto.*;
+import Empleado.*;
 
 // CLASE PRINCIPAL CON ARRAY Y MENU
 public class SistemaMaletas {
