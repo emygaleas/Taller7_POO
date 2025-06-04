@@ -39,4 +39,14 @@ public class Producto {
     public int getStock() {
         return stock;
     }
+
+    public boolean reducirStock(int cantidad) {
+        if (stock >= cantidad) {
+            stock -= cantidad;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

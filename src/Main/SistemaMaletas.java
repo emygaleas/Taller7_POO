@@ -5,11 +5,13 @@ import java.util.Scanner;
 
 import Producto.*;
 import Empleado.*;
+import Venta.Venta;
 
 // CLASE PRINCIPAL CON ARRAY Y MENU
 public class SistemaMaletas {
     static ArrayList<Producto> productos = new ArrayList<>();
     static ArrayList<Empleado> empleados = new ArrayList<>();
+    public static ArrayList<Venta> ventas = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -28,7 +30,8 @@ public class SistemaMaletas {
             System.out.println("4. Ver todos los productos");
             System.out.println("5. Ver empleados registrados");
             System.out.println("6. Agregar productos");
-            System.out.println("7. Mostrar productos con stock menor a 3 unidades");
+            System.out.println("7. Ver historial de ventas");
+            System.out.println("8. Mostrar productos con stock menor a 3 unidades");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = sc.nextInt();
@@ -80,7 +83,8 @@ public class SistemaMaletas {
                         System.out.println("No tiene permisos de administrador o ID de empleado incorrecto.");
                     }
                 }
-                case 7 -> mostrarStock();
+                case 7 -> mostrarHistorial();
+                case 8 -> mostrarStock();
             }
         } while(opcion != 0);
     }
@@ -160,4 +164,11 @@ public class SistemaMaletas {
         for (Empleado e : empleados) e.mostrarInfo();
     }
 
+    static void mostrarHistorial() {
+        if (ventas.isEmpty()) {
+            System.out.println("No hay ventas registradas.");
+        } else {
+            for (Venta v : ventas) v.mostrar();
+        }
+    }
 }
