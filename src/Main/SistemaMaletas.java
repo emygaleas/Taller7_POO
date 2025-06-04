@@ -27,6 +27,7 @@ public class SistemaMaletas {
             System.out.println("3. Realizar venta (Cajero)");
             System.out.println("4. Ver todos los productos");
             System.out.println("5. Ver empleados registrados");
+            System.out.println("6. Agregar productos");
             System.out.println("7. Mostrar productos con stock menor a 3 unidades");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");
@@ -37,7 +38,48 @@ public class SistemaMaletas {
                 case 2 -> clienteConsultar();
                 case 3 -> realizarVenta(cajero1);
                 case 4 -> mostrarTodos();
-                case 5 -> mostrarEmpleados();
+                case 5 -> {
+                    System.out.println("1. Mostrar información básica");
+                    System.out.println("2. Mostrar información completa");
+                    System.out.print("Opcion: ");
+                    int opcionIn = sc.nextInt();
+                    System.out.println();
+                    switch (opcionIn) {
+                        case 1 -> {
+                            for (Empleado e : empleados) {
+                                e.mostrarInfo();
+                                System.out.println();
+                            }
+                        }
+                        case 2 -> {
+                            for (Empleado e : empleados) {
+                                e.mostrarInfo("Perfil Completo");
+                                System.out.println();
+                            }
+                        }
+                        default -> System.out.println("Opción inválida");
+                    }
+                }
+                case 6 -> {
+                    System.out.print("\nIngrese su ID de empleado: ");
+                    String idEmpleado = sc.next();
+                    boolean AdministradorV = false;
+                    Administrador admin = null;
+
+                    for (Empleado e : empleados) {
+                        if (e.getId().equals(idEmpleado) && e instanceof Administrador) {
+                            AdministradorV = true;
+                            admin = (Administrador) e;
+                            break;
+                        }
+                    }
+
+                    if (AdministradorV) {
+                        admin.agregarProducto(productos);
+                    } else {
+                        System.out.println("No tiene permisos de administrador o ID de empleado incorrecto.");
+                    }
+                }
                 case 7 -> mostrarStock();
             }
         } while(opcion != 0);

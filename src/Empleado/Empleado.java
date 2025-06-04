@@ -15,4 +15,16 @@ public abstract class Empleado {
     public void mostrarInfo() {
         System.out.println("Empleado: " + nombre + " | Rol: " + rol);
     }
+
+    public void mostrarInfo(String nivelDeDetalle) {
+        if (nivelDeDetalle.equals("Perfil Completo")) {
+            System.out.println("Empleado: " + nombre);
+            System.out.println("ID: " + id);
+            System.out.println("Rol: " + rol);
+        }
+    }
+
+    public String getId() {
+        return id;
+    }
 }
