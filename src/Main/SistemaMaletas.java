@@ -11,15 +11,13 @@ import Venta.Venta;
 public class SistemaMaletas {
     static ArrayList<Producto> productos = new ArrayList<>();
     static ArrayList<Empleado> empleados = new ArrayList<>();
-    public static ArrayList<Venta> ventas = new ArrayList<>();
+    public static ArrayList<Venta> ventas = new ArrayList<>(); // Ahora public static para ser accesible desde Cajero
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
         inicializarDatos();
 
         Cajero cajero1 = (Cajero) empleados.get(0);
-        Cajero cajero2 = (Cajero) empleados.get(1);
-        Vendedor vendedor1 = (Vendedor) empleados.get(2);
 
         int opcion;
         do {
@@ -85,6 +83,8 @@ public class SistemaMaletas {
                 }
                 case 7 -> mostrarHistorial();
                 case 8 -> mostrarStock();
+                case 0 -> System.out.println("Saliendo del sistema...");
+                default -> System.out.println("Opción inválida. Intente de nuevo.");
             }
         } while(opcion != 0);
     }
@@ -136,12 +136,12 @@ public class SistemaMaletas {
         String cod = sc.next();
         Producto p = buscarProducto(cod);
         if (p != null) {
-            System.out.print("Cantidad a comprar (maximo 5 productos): ");
+            System.out.print("Cantidad a comprar (máximo 5 productos): ");
             int cant = sc.nextInt();
             if (cant > 0 && cant <= 5){
-                c.realizarVenta(p, cant);
+                c.realizarVenta2(p, cant); // Llama al método correcto para registrar la venta
             } else {
-                System.out.println("Cantidad maximo superada");
+                System.out.println("Cantidad máxima superada o inválida. Por favor, ingrese un número entre 1 y 5.");
             }
         } else {
             System.out.println("Producto no encontrado.");
@@ -149,22 +149,30 @@ public class SistemaMaletas {
     }
 
     static void mostrarStock() {
-        System.out.println("\n--- Productos con stock menor a 3 ---");
-        for (Producto p : productos)
-            if (p.getStock() <= 3)
+        System.out.println("\n--- Productos con stock menor o igual a 3 ---");
+        boolean hayProductosBajoStock = false;
+        for (Producto p : productos) {
+            if (p.getStock() <= 3) {
                 p.mostrarDetalle();
+                hayProductosBajoStock = true;
+            }
+        }
+        if (!hayProductosBajoStock) {
+            System.out.println("No hay productos con stock menor o igual a 3 unidades.");
+        }
     }
-
 
     static void mostrarTodos() {
-        for (Producto p : productos) p.mostrarDetalle();
-    }
-
-    static void mostrarEmpleados() {
-        for (Empleado e : empleados) e.mostrarInfo();
+        if (productos.isEmpty()) {
+            System.out.println("No hay productos registrados.");
+        } else {
+            System.out.println("\n--- Todos los productos ---");
+            for (Producto p : productos) p.mostrarDetalle();
+        }
     }
 
     static void mostrarHistorial() {
+        System.out.println("\n--- Historial de Ventas ---");
         if (ventas.isEmpty()) {
             System.out.println("No hay ventas registradas.");
         } else {

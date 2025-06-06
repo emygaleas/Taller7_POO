@@ -1,5 +1,6 @@
 package Venta;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter; // Import para formatear la fecha y hora
 
 public class Venta {
     String producto;
@@ -17,6 +18,8 @@ public class Venta {
     }
 
     public void mostrar() {
-        System.out.println(producto + " | Cantidad: " + cantidad + " | Total: $" + total + " | Cajero: " + cajero + " | Fecha: " + fecha);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String fechaFormateada = fecha.format(formatter);
+        System.out.println("Producto: " + producto + " | Cantidad: " + cantidad + " | Total: $" + String.format("%.2f", total) + " | Cajero: " + cajero + " | Fecha: " + fechaFormateada);
     }
 }
